@@ -2,13 +2,15 @@ const url = require('url')
 const express = require('express')
 const router = express.Router()
 const needle = require('needle')
+const apicache = require('apicache')
 
 const DOE_API_KEY_NAME = process.env.DOE_API_KEY_NAME
 const DOE_API_KEY_VALUE = process.env.DOE_API_KEY_VALUE
 const DOE_API_BASE_URL = process.env.DOE_API_BASE_URL
 
+let cache = apicache.middleware
 
-router.get('/', async (req,res) => {
+router.get('/', cache('5 minutes'), async (req,res) => {
   try {
     console.log(url.parse(req.url, true).query)
     // add the API key and query params to the end of the base URL

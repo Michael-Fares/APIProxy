@@ -16,6 +16,7 @@ const limiter = rateLimit({
 app.use(limiter)
 
 app.use(express.json())
+app.use(cors)
 
 app.use('/educationapi', require('./routes/education.js'))
 

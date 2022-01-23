@@ -4,6 +4,10 @@ const cors = require('cors')
 
 const app = express()
 
+app.use(express.json())
+
+app.use('/educationapi', require('./routes/education.js'))
+
 app.use(cors())
 
 const PORT = process.env.PORT || 4000

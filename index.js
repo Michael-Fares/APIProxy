@@ -13,6 +13,10 @@ const limiter = rateLimit({
   max: 25
 })
 
+app.get('/', (req, res) => {
+  res.send("Welcome to our server.")
+})
+
 app.use(limiter)
 
 app.use(express.json())
